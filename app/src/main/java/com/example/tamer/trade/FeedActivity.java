@@ -90,4 +90,26 @@ import java.util.ListIterator;
          }
          return super.onOptionsItemSelected(item);
      }
+
+     public void onItemClick(int mPosition)
+     {/*
+         ListModel tempValues = ( ListModel ) CustomListViewValuesArr.get(mPosition);
+         Car car = db.getAllCars().get(mPosition);
+
+         Intent i = new Intent(this, CarDetailesActivity.class);
+         i.putExtra("company", car.getCompany());
+         i.putExtra("model", car.getModel());
+         i.putExtra("year", car.getYear());
+         i.putExtra("engine", car.getEngine());
+         i.putExtra("horsePower", car.getHorsePower());
+         i.putExtra("condition", car.getCondition());
+         i.putExtra("phone", car.getPhone());
+         startActivity(i);
+
+*/
+
+
+
+         //Toast.makeText(CustomListView, "" + tempValues.getModel() + "Image:" + tempValues.getImage() + " Url:" + tempValues.getYear(), Toast.LENGTH_LONG).show();
+     }
  }

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Trade</string>
+    <string-array name="Gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <string-array name="spinnercondition">
+        <item>new</item>
+        <item>used</item>
+    </string-array>
+
+
+</resources>

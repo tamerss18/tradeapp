@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "750576208886",
+    "firebase_url": "https://trade-be32a.firebaseio.com",
+    "project_id": "trade-be32a",
+    "storage_bucket": "trade-be32a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:750576208886:android:1027ad518722bcd3",
+        "android_client_info": {
+          "package_name": "com.example.tamer.trade"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "750576208886-sd38s7mi954vs5glaf525sa1o4mj0dm5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tamer.trade",
+            "certificate_hash": "338e9340c34e69895fb8a6d502344fcd875103b2"
+          }
+        },
+        {
+          "client_id": "750576208886-ar204j1onh4ojauinul8nufh4p4qf98n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoHNGvuBTATf5QyyuxrcUVaQHJxWm41KM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "750576208886-ar204j1onh4ojauinul8nufh4p4qf98n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

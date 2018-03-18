@@ -157,50 +157,6 @@ public class AddWatchActivity extends Activity {
         }
     }
 
-
-/*
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==1999&&resultCode==RESULT_OK)
-        {
-            progressDialog.setMessage("Uploading ...");
-            progressDialog.show();
-
-            Uri uri = data.getData();
-//            try {
-//                imageView.setImageBitmap(MediaStore.Images.Media.getBitmap(getContentResolver(),uri));
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-            StorageReference filePath = mStorage.child(uri.getLastPathSegment());;
-            filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(AddWatchActivity.this,"Uploaded",Toast.LENGTH_SHORT).show();
-                    progressDialog.dismiss();
-                    @SuppressWarnings("VisibleForTests") Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                    imageView.setTag(downloadUrl);
-                }
-            })
-                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-//                    double progress = (100*taskSnapshot.getBytesTransferred())/ taskSnapshot.getTotalByteCount();
-//                    progressDialog.setMessage("Uploaded "+(int)progress+" %");
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-
-                        }
-                    });
-        }
-    }
-
-*/
-
     public void DoneClick(View view){
         if(!CheckInfo()) return;
         watch = new Watch(databaseReference.push().getKey().toString(),

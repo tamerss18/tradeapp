@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,93 +25,96 @@ import java.util.ListIterator;
 
  public class FeedActivity extends Activity {
 
-     private  FirebaseAuth firebaseAuth;
+     private FirebaseAuth firebaseAuth;
      private ListView listViewWatches;
      private List<Watch> watchList;
      private DatabaseReference databaseReference;
      private StorageReference storageReference;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feed);
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_feed);
 
-        init();
-    }
+         init();
+     }
 
      private void init() {
          firebaseAuth = FirebaseAuth.getInstance();
          databaseReference = FirebaseDatabase.getInstance().getReference().child("Watches");
-         listViewWatches = (ListView)findViewById(R.id.ListView);
+         listViewWatches = (ListView) findViewById(R.id.ListView);
+         //listViewWatches.setOnItemClickListener(itemClickListener);
          watchList = new ArrayList<>();
          storageReference = FirebaseStorage.getInstance().getReference();
-
-
          BulidList();
      }
 
-     public void BulidList(){
-        watchList.clear();
-        databaseReference.addValueEventListener(new ValueEventListener() {
+     public void BulidList() {
+         watchList.clear();
+         databaseReference.addValueEventListener(new ValueEventListener() {
 
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot SnapShot:dataSnapshot.getChildren() ){
-                    Watch watch = SnapShot.getValue(Watch.class);
-                    watchList.add(watch);
-                }
-                Collections.reverse(watchList);
-                WatchList adapter= new WatchList(FeedActivity.this,watchList);
-                listViewWatches.setAdapter(adapter);
-            }
+             @Override
+             public void onDataChange(DataSnapshot dataSnapshot) {
+                 for (DataSnapshot SnapShot : dataSnapshot.getChildren()) {
+                     Watch watch = SnapShot.getValue(Watch.class);
+                     watchList.add(watch);
+                 }
+                 Collections.reverse(watchList);
+                 WatchList adapter = new WatchList(FeedActivity.this, watchList);
+                 listViewWatches.setAdapter(adapter);
+             }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+             @Override
+             public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
-    }
+             }
+         });
+     }
 
      @Override
      public boolean onCreatePanelMenu(int featureId, Menu menu) {
-         getMenuInflater().inflate(R.menu.menu_main,menu);
+         getMenuInflater().inflate(R.menu.menu_main, menu);
          return super.onCreatePanelMenu(featureId, menu);
      }
 
      @Override
      public boolean onOptionsItemSelected(MenuItem item) {
-         int id=item.getItemId();
-         if (id == R.id.add_watch){
-             startActivity(new Intent(FeedActivity.this,AddWatchActivity.class));
+         int id = item.getItemId();
+         if (id == R.id.add_watch) {
+             startActivity(new Intent(FeedActivity.this, AddWatchActivity.class));
              return true;
          }
-         if (id == R.id.sign_out){
+         if (id == R.id.sign_out) {
              firebaseAuth.signOut();
-             startActivity(new Intent(FeedActivity.this,LogIn.class));
+             startActivity(new Intent(FeedActivity.this, LogIn.class));
              return true;
          }
          return super.onOptionsItemSelected(item);
      }
-
-     public void onItemClick(int mPosition)
-     {/*
-         ListModel tempValues = ( ListModel ) CustomListViewValuesArr.get(mPosition);
-         Car car = db.getAllCars().get(mPosition);
-
-         Intent i = new Intent(this, CarDetailesActivity.class);
-         i.putExtra("company", car.getCompany());
-         i.putExtra("model", car.getModel());
-         i.putExtra("year", car.getYear());
-         i.putExtra("engine", car.getEngine());
-         i.putExtra("horsePower", car.getHorsePower());
-         i.putExtra("condition", car.getCondition());
-         i.putExtra("phone", car.getPhone());
-         startActivity(i);
-
-*/
+/*
+     AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
+         @Override
+         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
 
+                 Watch watch = watchList.get(i);
 
-         //Toast.makeText(CustomListView, "" + tempValues.getModel() + "Image:" + tempValues.getImage() + " Url:" + tempValues.getYear(), Toast.LENGTH_LONG).show();
-     }
+                 Intent intent = new Intent(FeedActivity.this, WatchDetailesActivity.class);
+                 intent.putExtra("WatchId", watch.getWatchID());
+                 intent.putExtra("UserId", watch.getUserId());
+                 intent.putExtra("WatchBrand", watch.getWatchBrand());
+                 intent.putExtra("Color", watch.getColor());
+                 intent.putExtra("WatchSpecs", watch.getWatchSpecs());
+                 intent.putExtra("Size", watch.getSize());
+                 intent.putExtra("DesiredWatch", watch.getDesiredWatch());
+                 intent.putExtra("Condition", watch.getCondition());
+                 intent.putExtra("PhontoUrl", watch.getPhontoUrl());
+
+                 startActivity(intent);
+
+
+                 //Toast.makeText(CustomListView, "" + tempValues.getModel() + "Image:" + tempValues.getImage() + " Url:" + tempValues.getYear(), Toast.LENGTH_LONG).show();
+
+         }
+     }; */
  }

@@ -75,6 +75,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="Onclick"
-        android:text="Sign Up" />
+        android:text="Sign Up"
+        android:background="@drawable/blackroundbutton"
+        android:textColor="#FFF"
+        />
 
 </LinearLayout>

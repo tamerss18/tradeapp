@@ -19,14 +19,14 @@ public class WatchDetailesActivity extends AppCompatActivity {
 
     private void init() {
         Watch watch = new Watch();
-        watch.setWatchID(getIntent().getStringExtra("WatchId"));
-        watch.setUserId(getIntent().getStringExtra("UserId"));
-        watch.setColor(getIntent().getStringExtra("Color"));
-        watch.setWatchSpecs(getIntent().getStringExtra("WatchSpecs"));
-        watch.setSize(getIntent().getStringExtra("Size"));
-        watch.setDesiredWatch(getIntent().getStringExtra("DesiredWatch"));
-        watch.setCondition(getIntent().getStringExtra("Condition"));
-        watch.setPhontoUrl(getIntent().getStringExtra("PhontoUrl"));
+        watch.WatchID=(getIntent().getStringExtra("WatchId"));
+        watch.UserId=(getIntent().getStringExtra("UserId"));
+        watch.Color=(getIntent().getStringExtra("Color"));
+        watch.WatchSpecs=(getIntent().getStringExtra("WatchSpecs"));
+        watch.Size=(getIntent().getStringExtra("Size"));
+        watch.DesiredWatch=(getIntent().getStringExtra("DesiredWatch"));
+        watch.Condition=(getIntent().getStringExtra("Condition"));
+        //watch.PhontoUrl=(getIntent().getStringExtra("PhontoUrl"));
         imgPhoto = (ImageView)findViewById(R.id.imWatchDetails);
         txtBrand = (TextView) findViewById(R.id.txtBrandDet);
         txtColor = (TextView) findViewById(R.id.txtColorDet);
@@ -34,12 +34,12 @@ public class WatchDetailesActivity extends AppCompatActivity {
         txtSize = (TextView) findViewById(R.id.txtSizeDet);
         txtDesired = (TextView) findViewById(R.id.txtDesiredDet);
         txtCondition = (TextView) findViewById(R.id.txtConditionDet);
-        txtBrand.setText(watch.getWatchBrand());
-        txtColor.setText(watch.getColor());
-        txtSpec.setText(watch.getWatchSpecs());
-        txtSize.setText(watch.getSize());
-        txtDesired.setText(watch.getDesiredWatch());
-        txtCondition.setText(watch.getCondition());
+        txtBrand.setText(watch.WatchBrand);
+        txtColor.setText(watch.Color);
+        txtSpec.setText(watch.WatchSpecs);
+        txtSize.setText(watch.Size);
+        txtDesired.setText(watch.DesiredWatch);
+        txtCondition.setText(watch.Condition);
 
 
 

@@ -43,9 +43,15 @@ import java.util.ListIterator;
          firebaseAuth = FirebaseAuth.getInstance();
          databaseReference = FirebaseDatabase.getInstance().getReference().child("Watches");
          listViewWatches = (ListView) findViewById(R.id.ListView);
-         //listViewWatches.setOnItemClickListener(itemClickListener);
+         listViewWatches.setOnItemClickListener(itemClickListener);
          watchList = new ArrayList<>();
          storageReference = FirebaseStorage.getInstance().getReference();
+         //BulidList();
+     }
+
+     @Override
+     protected void onStart() {
+         super.onStart();
          BulidList();
      }
 
@@ -59,7 +65,7 @@ import java.util.ListIterator;
                      Watch watch = SnapShot.getValue(Watch.class);
                      watchList.add(watch);
                  }
-                 Collections.reverse(watchList);
+                 //Collections.reverse(watchList);
                  WatchList adapter = new WatchList(FeedActivity.this, watchList);
                  listViewWatches.setAdapter(adapter);
              }
@@ -91,7 +97,7 @@ import java.util.ListIterator;
          }
          return super.onOptionsItemSelected(item);
      }
-/*
+
      AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
          @Override
          public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -99,16 +105,17 @@ import java.util.ListIterator;
 
                  Watch watch = watchList.get(i);
 
-                 Intent intent = new Intent(FeedActivity.this, WatchDetailesActivity.class);
-                 intent.putExtra("WatchId", watch.getWatchID());
-                 intent.putExtra("UserId", watch.getUserId());
-                 intent.putExtra("WatchBrand", watch.getWatchBrand());
-                 intent.putExtra("Color", watch.getColor());
-                 intent.putExtra("WatchSpecs", watch.getWatchSpecs());
-                 intent.putExtra("Size", watch.getSize());
-                 intent.putExtra("DesiredWatch", watch.getDesiredWatch());
-                 intent.putExtra("Condition", watch.getCondition());
-                 intent.putExtra("PhontoUrl", watch.getPhontoUrl());
+                 Intent intent = new Intent(FeedActivity.this, TempActivity.class);
+                 /*
+                 intent.putExtra("WatchId",watch.WatchID);
+                 intent.putExtra("UserId", watch.UserId);
+                 intent.putExtra("WatchBrand", watch.WatchBrand);
+                 intent.putExtra("Color", watch.Color);
+                 intent.putExtra("WatchSpecs", watch.WatchSpecs);
+                 intent.putExtra("Size", watch.Size);
+                 intent.putExtra("DesiredWatch", watch.DesiredWatch);
+                 intent.putExtra("Condition", watch.Condition); */
+                 //intent.putExtra("PhontoUrl", watch.PhontoUrl);
 
                  startActivity(intent);
 
@@ -116,5 +123,10 @@ import java.util.ListIterator;
                  //Toast.makeText(CustomListView, "" + tempValues.getModel() + "Image:" + tempValues.getImage() + " Url:" + tempValues.getYear(), Toast.LENGTH_LONG).show();
 
          }
-     }; */
- }
+     };
+
+     public void onClickWatchItemButton(View view) {
+     }
+
+     }
+

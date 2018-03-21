@@ -35,6 +35,8 @@ public class LogIn extends Activity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Logging In");
 
+        //firebase.auth
+
     }
     public void LoginClick(View view)
     {
@@ -58,6 +60,11 @@ public class LogIn extends Activity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            if (firebaseAuth.getCurrentUser() != null)
+                            {
+                                int i;
+                            }
+
                             progressDialog.dismiss();
                             Toast.makeText(LogIn.this, "Login successfully ", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LogIn.this,FeedActivity.class));

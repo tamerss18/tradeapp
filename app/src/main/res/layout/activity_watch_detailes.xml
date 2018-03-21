@@ -26,13 +26,16 @@
         android:id="@+id/txtBrandDet"
         android:layout_width="333dp"
         android:layout_height="29dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Brand"
+        app:layout_constraintBottom_toTopOf="@+id/txtColorDet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="199dp" />
+        app:layout_constraintTop_toBottomOf="@+id/imWatchDetails" />
 
     <TextView
         android:id="@+id/txtColorDet"
@@ -44,69 +47,79 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="240dp" />
+        tools:layout_editor_absoluteY="240dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/txtConditionDet"
         android:layout_width="333dp"
         android:layout_height="29dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="Condition"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.545"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="411dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtDesiredDet"
         android:layout_width="333dp"
         android:layout_height="32dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="Desired Watch"
+        app:layout_constraintBottom_toTopOf="@+id/txtConditionDet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.545"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="371dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtSizeDet"
         android:layout_width="333dp"
         android:layout_height="33dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="Size"
+        app:layout_constraintBottom_toTopOf="@+id/txtDesiredDet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.545"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="326dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtWSpecDet"
         android:layout_width="333dp"
         android:layout_height="29dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Spec"
+        app:layout_constraintBottom_toTopOf="@+id/txtSizeDet"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.727"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="286dp" />
+        app:layout_constraintTop_toBottomOf="@+id/txtColorDet" />
 
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="344dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:background="@drawable/blackroundbutton"
         android:gravity="center"
-        android:onClick="LoginClick"
         android:text="Contact Seller"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="447dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

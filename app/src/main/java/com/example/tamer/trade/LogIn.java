@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -82,5 +83,31 @@ public class LogIn extends Activity {
 
     public void CreateUser(View view){
         startActivity(new Intent(LogIn.this,signUp.class));
+    }
+
+
+
+    public void ForgotClick(View view){
+        String em = email.getText().toString();
+        if(TextUtils.isEmpty(em))
+        {
+            Toast.makeText(LogIn.this, "enter your email.", Toast.LENGTH_SHORT).show();
+            email.requestFocus();
+            return;
+        }
+
+        firebaseAuth.sendPasswordResetEmail(em)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(LogIn.this, "Go to your email to reset your password.", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            if(task.getException().getMessage().contains("identifier"))
+                                Toast.makeText(LogIn.this, "Please check if your email is valid.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }

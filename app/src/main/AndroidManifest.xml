@@ -19,8 +19,8 @@
         <activity android:name=".FeedActivity" />
         <activity android:name=".AddWatchActivity" />
         <activity android:name=".WatchDetailesActivity" />
-        <activity android:name=".TempActivity" />
-        <activity android:name=".StreamActivity"></activity>
+        <activity android:name=".StreamActivity" />
+        <activity android:name=".CheckActivity"></activity>
     </application>
 
 </manifest>

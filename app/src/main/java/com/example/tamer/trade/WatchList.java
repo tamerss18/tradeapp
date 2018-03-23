@@ -40,9 +40,9 @@ public class WatchList extends ArrayAdapter<Watch> {
         Button button = view.findViewById(R.id.buttonDetails);
         Watch watch = watchList.get(possition);
         //TODO set Pic
-        textView.setText(watch.WatchBrand);
-        button.setTag(watch.WatchID);
-        Picasso.with(getContext()).load(watch.PhontoUrl).into(imageView);
+        textView.setText(watch.getWatchBrand());
+        button.setTag(watch.getWatchID());
+        Picasso.with(getContext()).load(watch.getPhontoUrl()).into(imageView);
         return view;
     }
 }

@@ -94,7 +94,7 @@
         android:id="@+id/buttonAddWatch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="DoneClick"
+        android:onClick="addWatch"
         android:text="Done" />
 
 </LinearLayout>

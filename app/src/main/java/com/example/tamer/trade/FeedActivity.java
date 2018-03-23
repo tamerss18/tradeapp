@@ -113,18 +113,18 @@ import static android.content.ContentValues.TAG;
 
                  Watch watch = watchList.get(i);
 
-                 Intent intent = new Intent(FeedActivity.this, TempActivity.class);
-                 /*
-                 intent.putExtra("WatchId",watch.WatchID);
-                 intent.putExtra("UserId", watch.UserId);
-                 intent.putExtra("WatchBrand", watch.WatchBrand);
-                 intent.putExtra("Color", watch.Color);
-                 intent.putExtra("WatchSpecs", watch.WatchSpecs);
-                 intent.putExtra("Size", watch.Size);
-                 intent.putExtra("DesiredWatch", watch.DesiredWatch);
-                 intent.putExtra("Condition", watch.Condition); */
-                 //intent.putExtra("PhontoUrl", watch.PhontoUrl);
-
+                 Intent intent = new Intent(FeedActivity.this, CheckActivity.class);
+/*
+                 intent.putExtra("WatchId",watch.getWatchID());
+                 intent.putExtra("UserId", watch.getUserId());
+                 intent.putExtra("WatchBrand", watch.getWatchBrand());
+                 intent.putExtra("Color", watch.getColor());
+                 intent.putExtra("WatchSpecs", watch.getWatchSpecs());
+                 intent.putExtra("Size", watch.getSize());
+                 intent.putExtra("DesiredWatch", watch.getDesiredWatch());
+                 intent.putExtra("Condition", watch.getCondition());
+                 intent.putExtra("PhontoUrl", watch.getPhontoUrl());
+*/
                  startActivity(intent);
 
 

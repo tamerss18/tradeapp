@@ -106,8 +106,7 @@ public class AddWatchActivity extends Activity {
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 
-
-    private void uploadFile() {
+    public void addWatch(View view) {
         //checking if file is available
         if (filePath != null) {
             //displaying progress dialog while image is uploading
@@ -126,29 +125,44 @@ public class AddWatchActivity extends Activity {
                             //dismissing the progress dialog
                             progressDialog.dismiss();
 
+                            Uri imgURL = taskSnapshot.getDownloadUrl();
+                            String downloadURL = imgURL.toString();
+
+                            String brand = editWatchBrand.getText().toString();
+                            String color = editColor.getText().toString();
+                            String condition = spnrCondition.getSelectedItem().toString();
+                            String specs = editWatchSpecs.getText().toString();
+                            String size = editSize.getText().toString();
+                            String desired = editDesiredWatch.getText().toString();
+                            if (!brand.isEmpty() && !color.isEmpty() && !condition.isEmpty() && !specs.isEmpty() &&
+                                    !size.isEmpty() && !desired.isEmpty())
+                            {
+                                Watch rest = new Watch("0",firebaseAuth.getCurrentUser().getUid(), brand, color,
+                                        specs, size, desired, condition, downloadURL);
+                                try {
+                                    databaseReference.push().setValue(rest);
+                                }
+                                catch (Exception ex)
+                                {
+                                    Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                                Toast.makeText(AddWatchActivity.this, "Watch added successfully!", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                Toast.makeText( AddWatchActivity.this, "Missing data!",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+
                             //displaying success toast
                             Toast.makeText(getApplicationContext(), "File Uploaded ", Toast.LENGTH_LONG).show();
 
                             //creating the upload object to store uploaded image details
-                            @SuppressWarnings("VisibleForTests") Uri imgUrl = taskSnapshot.getDownloadUrl();
+//                            Upload upload = new Upload(etReastaurantName.getText().toString().trim(), taskSnapshot.getDownloadUrl().toString());
 
-                            String downloadURL = imgUrl.toString();
-                            downloadURL2 = downloadURL;
-/*
-                            String watchBrand = editWatchBrand.getText().toString();
-                            String color = editColor.getText().toString();
-                            String watchSpecs = editWatchSpecs.getText().toString();
-                            String watchSize = editSize.getText().toString();
-                            String desiredWatch = editDesiredWatch.getText().toString();
-                            String condition = spnrCondition.getSelectedItem().toString();
-                            //Watch watch = new Watch("0", "0", watchBrand, color, watchSpecs, watchSize, desiredWatch, condition, downloadURL);
-                            watch = new Watch("0", firebaseAuth.getCurrentUser().getUid(), watchBrand, color, watchSpecs, watchSize, desiredWatch, condition, "1");
-                            databaseReference.child(databaseReference.push().getKey()).setValue(watch); */
-                            //databaseReference.push().setValue(watch);
-                            //FirebaseDatabase.getInstance().getReference().child("Watches").push().setValue(watch);
-                            Toast.makeText(AddWatchActivity.this, "Watch added successfully!", Toast.LENGTH_SHORT).show();
-                            //adding an upload to firebase database
-
+                           /* //adding an upload to firebase database
+                            String uploadId = restsRef.push().getKey();
+                            restsRef.child(uploadId).setValue(upload);*/
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -162,39 +176,14 @@ public class AddWatchActivity extends Activity {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             //displaying the upload progress
-                            @SuppressWarnings("VisibleForTests") long bytesTransferred = taskSnapshot.getBytesTransferred();
-                            @SuppressWarnings("VisibleForTests") long totalByteCount = taskSnapshot.getTotalByteCount();
-                            double progress = (100.0 * bytesTransferred) / totalByteCount;
+                            double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
                             progressDialog.setMessage("Uploaded " + ((int) progress) + "%...");
                         }
                     });
         } else {
             //display an error if no file is selected
         }
-    }
 
-    public void DoneClick(View view){
-        if(!CheckInfo()) return;
-        uploadFile();
-
-        watch = new Watch(databaseReference.push().getKey().toString(),
-                firebaseAuth.getCurrentUser().getUid().toString(),
-                editWatchBrand.getText().toString(),
-                editColor.getText().toString(),
-                editWatchSpecs.getText().toString(),
-                editSize.getText().toString(),
-                editDesiredWatch.getText().toString(),
-                spnrCondition.getSelectedItem().toString(),
-                downloadURL2);
-        databaseReference.child(databaseReference.push().getKey()).setValue(watch);
-
-        /*
-        *         database = FirebaseDatabase.getInstance();
-        ref = database.getReference();
-        mStorageRef = FirebaseStorage.getInstance().getReference();
-        restsRef = ref.child("restaurants");*/
-        //databaseReference.child(databaseReference.push().getKey()).setValue(watch);
-        //FirebaseDatabase.getInstance().getReference().child("Watches").push().setValue(watch);
         startActivity(new Intent(AddWatchActivity.this,FeedActivity.class));
     }
 

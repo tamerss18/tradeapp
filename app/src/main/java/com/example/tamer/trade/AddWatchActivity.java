@@ -44,6 +44,8 @@ public class AddWatchActivity extends Activity {
     private StorageReference storageReference;
     private Uri filePath;
     private Watch watch;
+    private Upload upload;
+    public String downloadURL2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,7 @@ public class AddWatchActivity extends Activity {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Watches");
         firebaseAuth = FirebaseAuth.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
+        downloadURL2 = null;
     }
 
     //constant to track image chooser intent
@@ -127,12 +130,25 @@ public class AddWatchActivity extends Activity {
                             Toast.makeText(getApplicationContext(), "File Uploaded ", Toast.LENGTH_LONG).show();
 
                             //creating the upload object to store uploaded image details
-                            @SuppressWarnings("VisibleForTests") Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                            Upload upload = new Upload(editWatchBrand.getText().toString(), downloadUrl.toString()); //taskSnapshot.getDownloadUrl().toString());
+                            @SuppressWarnings("VisibleForTests") Uri imgUrl = taskSnapshot.getDownloadUrl();
 
+                            String downloadURL = imgUrl.toString();
+                            downloadURL2 = downloadURL;
+/*
+                            String watchBrand = editWatchBrand.getText().toString();
+                            String color = editColor.getText().toString();
+                            String watchSpecs = editWatchSpecs.getText().toString();
+                            String watchSize = editSize.getText().toString();
+                            String desiredWatch = editDesiredWatch.getText().toString();
+                            String condition = spnrCondition.getSelectedItem().toString();
+                            //Watch watch = new Watch("0", "0", watchBrand, color, watchSpecs, watchSize, desiredWatch, condition, downloadURL);
+                            watch = new Watch("0", firebaseAuth.getCurrentUser().getUid(), watchBrand, color, watchSpecs, watchSize, desiredWatch, condition, "1");
+                            databaseReference.child(databaseReference.push().getKey()).setValue(watch); */
+                            //databaseReference.push().setValue(watch);
+                            //FirebaseDatabase.getInstance().getReference().child("Watches").push().setValue(watch);
+                            Toast.makeText(AddWatchActivity.this, "Watch added successfully!", Toast.LENGTH_SHORT).show();
                             //adding an upload to firebase database
-                            //String uploadId = mDatabase.push().getKey();
-                            //mDatabase.child(uploadId).setValue(upload);
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -159,6 +175,8 @@ public class AddWatchActivity extends Activity {
 
     public void DoneClick(View view){
         if(!CheckInfo()) return;
+        uploadFile();
+
         watch = new Watch(databaseReference.push().getKey().toString(),
                 firebaseAuth.getCurrentUser().getUid().toString(),
                 editWatchBrand.getText().toString(),
@@ -167,9 +185,16 @@ public class AddWatchActivity extends Activity {
                 editSize.getText().toString(),
                 editDesiredWatch.getText().toString(),
                 spnrCondition.getSelectedItem().toString(),
-                imageView.getTag().toString());
+                downloadURL2);
         databaseReference.child(databaseReference.push().getKey()).setValue(watch);
-        uploadFile();
+
+        /*
+        *         database = FirebaseDatabase.getInstance();
+        ref = database.getReference();
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+        restsRef = ref.child("restaurants");*/
+        //databaseReference.child(databaseReference.push().getKey()).setValue(watch);
+        //FirebaseDatabase.getInstance().getReference().child("Watches").push().setValue(watch);
         startActivity(new Intent(AddWatchActivity.this,FeedActivity.class));
     }
 

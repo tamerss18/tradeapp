@@ -16,6 +16,10 @@ public class Watch {
     public String Condition;
     public String PhontoUrl;
 
+    public void setPhontoUrl(String phontoUrl) {
+        PhontoUrl = phontoUrl;
+    }
+
     public Watch(String watchID, String userId, String watchBrand, String color, String watchSpecs, String size, String desiredWatch, String condition, String phontoUrl) {
         WatchID = watchID;
         UserId = userId;

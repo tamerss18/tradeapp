@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -41,6 +42,7 @@ public class WatchList extends ArrayAdapter<Watch> {
         //TODO set Pic
         textView.setText(watch.WatchBrand);
         button.setTag(watch.WatchID);
+        Picasso.with(getContext()).load(watch.PhontoUrl).into(imageView);
         return view;
     }
 }

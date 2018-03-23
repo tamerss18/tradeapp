@@ -35,6 +35,11 @@ public class LogIn extends Activity {
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Logging In");
+        if (firebaseAuth.getCurrentUser() != null)
+        {
+            Intent i = new Intent(LogIn.this, FeedActivity.class);
+            startActivity(i);
+        }
 
         //firebase.auth
 

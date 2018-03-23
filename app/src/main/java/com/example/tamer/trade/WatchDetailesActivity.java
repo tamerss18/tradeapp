@@ -1,5 +1,6 @@
 package com.example.tamer.trade;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +20,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WatchDetailesActivity extends AppCompatActivity {
+public class WatchDetailesActivity extends Activity {
     private List<Users> users;
     private ImageView imgPhoto;
     private TextView txtBrand, txtColor, txtSpec, txtSize, txtDesired, txtCondition;

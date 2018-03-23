@@ -113,8 +113,8 @@ import static android.content.ContentValues.TAG;
 
                  Watch watch = watchList.get(i);
 
-                 Intent intent = new Intent(FeedActivity.this, CheckActivity.class);
-/*
+                 Intent intent = new Intent(FeedActivity.this, WatchDetailesActivity.class);
+
                  intent.putExtra("WatchId",watch.getWatchID());
                  intent.putExtra("UserId", watch.getUserId());
                  intent.putExtra("WatchBrand", watch.getWatchBrand());
@@ -124,7 +124,7 @@ import static android.content.ContentValues.TAG;
                  intent.putExtra("DesiredWatch", watch.getDesiredWatch());
                  intent.putExtra("Condition", watch.getCondition());
                  intent.putExtra("PhontoUrl", watch.getPhontoUrl());
-*/
+
                  startActivity(intent);
 
 

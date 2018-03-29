@@ -3,7 +3,6 @@ package com.example.tamer.trade;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -46,6 +45,7 @@ public class WatchDetailesActivity extends Activity {
         watch.setSize(getIntent().getStringExtra("Size"));
         watch.setDesiredWatch(getIntent().getStringExtra("DesiredWatch"));
         watch.setCondition(getIntent().getStringExtra("Condition"));
+        watch.setPhontoUrl(getIntent().getStringExtra("PhontoUrl"));
         imgPhoto = (ImageView)findViewById(R.id.imWatchDetails);
         Picasso.with(this).load(watch.getPhontoUrl()).into(imgPhoto);
         txtBrand = (TextView) findViewById(R.id.txtBrandDet);
@@ -106,5 +106,10 @@ public class WatchDetailesActivity extends Activity {
         {
             Toast.makeText(getApplicationContext(), "Incorrect phone number!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void gotoPay(View view) {
+        Intent i = new Intent(getApplicationContext(), Pay2Activity.class);
+        startActivity(i);
     }
 }

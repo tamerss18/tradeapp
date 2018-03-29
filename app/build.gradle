@@ -30,8 +30,11 @@ dependencies {
     compile 'com.google.firebase:firebase-storage:10.0.1'
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.paypal.sdk:paypal-android-sdk:2.14.2'
     testCompile 'junit:junit:4.12'
 }
+
+
 
 
 

@@ -20,7 +20,9 @@
         <activity android:name=".AddWatchActivity" />
         <activity android:name=".WatchDetailesActivity" />
         <activity android:name=".StreamActivity" />
-        <activity android:name=".CheckActivity"></activity>
+        <activity android:name=".CheckActivity" />
+        <activity android:name=".Pay2Activity" />
+        <activity android:name=".ConfirmationActivity"></activity>
     </application>
 
 </manifest>

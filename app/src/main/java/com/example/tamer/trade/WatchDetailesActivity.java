@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -45,7 +46,6 @@ public class WatchDetailesActivity extends Activity {
         watch.setSize(getIntent().getStringExtra("Size"));
         watch.setDesiredWatch(getIntent().getStringExtra("DesiredWatch"));
         watch.setCondition(getIntent().getStringExtra("Condition"));
-        watch.setPhontoUrl(getIntent().getStringExtra("PhontoUrl"));
         imgPhoto = (ImageView)findViewById(R.id.imWatchDetails);
         Picasso.with(this).load(watch.getPhontoUrl()).into(imgPhoto);
         txtBrand = (TextView) findViewById(R.id.txtBrandDet);
@@ -85,11 +85,26 @@ public class WatchDetailesActivity extends Activity {
     }
 
     public void sendSMS(View view) {
-        // TODO: get user details
+
+        String phoneNumber = null;
+        for(Users user: users)
+        {
+            if (user.getId().equals(fba.getCurrentUser().getUid()))
+            {
+                phoneNumber = user.getPhoneNumber();
+            }
+        }
         // check if user exists in users and get his pone number from DB
         //if (fba.getCurrentUser().getEmail())
 
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"
-                + "0502058072")));
+        if (phoneNumber != null)
+        {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"
+                    + phoneNumber)));
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(), "Incorrect phone number!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

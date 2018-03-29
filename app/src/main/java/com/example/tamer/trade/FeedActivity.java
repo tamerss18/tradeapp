@@ -64,11 +64,11 @@ import static android.content.ContentValues.TAG;
      }
 
      public void BulidList() {
-         watchList.clear();
          databaseReference.addValueEventListener(new ValueEventListener() {
 
              @Override
              public void onDataChange(DataSnapshot dataSnapshot) {
+                 watchList.clear();
                  for (DataSnapshot SnapShot : dataSnapshot.getChildren()) {
                      Watch watch = SnapShot.getValue(Watch.class);
                      watchList.add(watch);

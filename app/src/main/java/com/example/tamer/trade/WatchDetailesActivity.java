@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +28,9 @@ public class WatchDetailesActivity extends Activity {
     private FirebaseDatabase db;
     private DatabaseReference watchsRef;
     private FirebaseAuth fba;
+    private Watch watch;
+    private Button btnPay;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +41,8 @@ public class WatchDetailesActivity extends Activity {
     }
 
     private void init() {
-        Watch watch = new Watch();
+        btnPay = (Button) findViewById(R.id.btnPay);
+        watch = new Watch();
         watch.setWatchID(getIntent().getStringExtra("WatchId"));
         watch.setUserId(getIntent().getStringExtra("UserId"));
         watch.setColor(getIntent().getStringExtra("Color"));
@@ -82,6 +87,9 @@ public class WatchDetailesActivity extends Activity {
             }
         });
 
+
+        if (!fba.getCurrentUser().getUid().equals(watch.getUserId()))
+            btnPay.setVisibility(View.VISIBLE);
     }
 
     public void sendSMS(View view) {
@@ -109,6 +117,7 @@ public class WatchDetailesActivity extends Activity {
     }
 
     public void gotoPay(View view) {
+
         Intent i = new Intent(getApplicationContext(), Pay2Activity.class);
         startActivity(i);
     }
